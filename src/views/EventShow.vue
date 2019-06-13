@@ -1,14 +1,11 @@
 <template>
-    <h1>Showing event #{{ id }}</h1>
+  <h1>Showing event #{{ id }}</h1>
 </template>
 
 <script>
 export default {
-    props: ['id']
-}
+  props: ['id']
+};
 </script>
 
-<style>
-
-</style>
-
+<style></style>
