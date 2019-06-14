@@ -27,6 +27,7 @@
         <b>{{ attendee.name }}</b>
       </li>
     </ul>
+    <h5>Organized by {{ event.organizer ? event.organizer.name : '' }}</h5>
   </div>
 </template>
 

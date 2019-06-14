@@ -19,7 +19,9 @@ export default {
     event: {
       type: Object,
       required: true,
-      default: { attendees: [], date: '' }
+      default() {
+        return { attendees: [], date: '' };
+      }
     }
   }
 };
