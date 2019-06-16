@@ -1,8 +1,14 @@
 <template>
   <div>
     <div class="event-header">
+      <!--       TODO: Fix the date! -->
       <span class="eyebrow"
-        >@{{ event.time }} on {{ event.date.slice('', 10) }}</span
+        >@{{ event.time }} on
+        {{
+          event.date.length > 0
+            ? event.date.slice('', 10)
+            : '-> Refresh to update'
+        }}</span
       >
       <h1 class="title">{{ event.title }}</h1>
       <h5>Organized by {{ event.organizer }}</h5>
@@ -16,7 +22,9 @@
     <p>{{ event.description }}</p>
     <h2>
       Attendees
-      <span class="badge -fill-gradient">{{ event.attendees.length }}</span>
+      <span class="badge -fill-gradient">{{
+        event.attendees && event.attendees.length
+      }}</span>
     </h2>
     <ul class="list-group">
       <li
@@ -39,9 +47,12 @@ export default {
   created() {
     this.fetchEvent(this.id);
   },
-  computed: mapState({
-    event: state => state.event.event
-  }),
+  computed: {
+    ...mapState({ event: (state) => state.event.event })
+  },
+  mounted() {
+    this.event.date = this.event.date ? this.event.date : 'none';
+  },
   methods: mapActions('event', ['fetchEvent'])
 };
 </script>

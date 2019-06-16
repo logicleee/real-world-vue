@@ -44,21 +44,6 @@
       "date": "2019-02-02T23:27:00.000Z",
       "time": "1:00",
       "attendees": []
-    },
-    {
-      "id": 8067850,
-      "user": {
-        "id": "abc123",
-        "name": "Adam Jahr"
-      },
-      "organizer": "Adam Jahr",
-      "category": "community",
-      "title": "another ev ent",
-      "description": "asdfasd",
-      "location": "asdfas",
-      "date": "2019-06-05T02:14:00.000Z",
-      "time": "08:00",
-      "attendees": []
     }
   ]
 }
