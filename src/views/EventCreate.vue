@@ -35,7 +35,7 @@
       <h3>When is your event?</h3>
       <div class="field">
         <label>Date</label>
-        <datepicker v-model="event.date" placeholder="Select a date" />
+        <Datepicker v-model="event.date" placeholder="Select a date" />
       </div>
       <div class="field">
         <label>Select a time</label>
@@ -79,11 +79,7 @@ export default {
           });
           this.event = this.createFreshEventObject();
         })
-        .catch((error) => {
-          console.log(
-            'There was a problem creating your event.' + error.response
-          );
-        });
+        .catch(() => {});
     },
     createFreshEventObject() {
       const user = this.$store.state.user;
