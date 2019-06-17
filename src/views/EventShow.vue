@@ -2,14 +2,14 @@
   <div>
     <div class="event-header">
       <!--       TODO: Fix the date! -->
-      <span class="eyebrow"
-        >@{{ event.time }} on
+      <span class="eyebrow">
+        @{{ event.time }} on
         {{
-          event.date.length > 0
-            ? event.date.slice('', 10)
-            : '-> Refresh to update'
-        }}</span
-      >
+        event.date.length > 0
+        ? event.date.slice('', 10)
+        : '-> Refresh to update'
+        }}
+      </span>
       <h1 class="title">{{ event.title }}</h1>
       <h5>Organized by {{ event.organizer }}</h5>
       <h5>Category: {{ event.category }}</h5>
@@ -22,16 +22,14 @@
     <p>{{ event.description }}</p>
     <h2>
       Attendees
-      <span class="badge -fill-gradient">{{
+      <span class="badge -fill-gradient">
+        {{
         event.attendees && event.attendees.length
-      }}</span>
+        }}
+      </span>
     </h2>
     <ul class="list-group">
-      <li
-        v-for="(attendee, index) in event.attendees"
-        :key="index"
-        class="list-item"
-      >
+      <li v-for="(attendee, index) in event.attendees" :key="index" class="list-item">
         <b>{{ attendee.name }}</b>
       </li>
     </ul>
@@ -40,21 +38,26 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState } from 'vuex'
+import NProgress from 'nprogress'
+import store from '@/store/store'
 
 export default {
   props: ['id'],
-  created() {
-    this.fetchEvent(this.id);
+  beforeRouteEnter(routeTo, RouteFrom, next) {
+    NProgress.start()
+    store.dispatch('event/fetchEvent', routeTo.params.id).then(() => {
+      NProgress.done()
+      next()
+    })
   },
   computed: {
-    ...mapState({ event: (state) => state.event.event })
+    ...mapState({ event: state => state.event.event })
   },
   mounted() {
-    this.event.date = this.event.date ? this.event.date : 'none';
-  },
-  methods: mapActions('event', ['fetchEvent'])
-};
+    this.event.date = this.event.date ? this.event.date : 'none'
+  }
+}
 </script>
 
 <style>

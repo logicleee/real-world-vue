@@ -44,6 +44,22 @@
       "date": "2019-02-02T23:27:00.000Z",
       "time": "1:00",
       "attendees": []
+    },
+    {
+      "id": 1804547,
+      "user": {
+        "user": {
+          "id": "abc123",
+          "name": "Adam"
+        }
+      },
+      "category": "housing",
+      "title": "test",
+      "description": "werwer",
+      "location": "ewr",
+      "date": "2019-06-19T19:29:00.000Z",
+      "time": "07:00",
+      "attendees": []
     }
   ]
 }
