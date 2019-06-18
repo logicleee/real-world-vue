@@ -16,7 +16,7 @@ module.exports = {
       {
         trailingComma: 'none',
         tabWidth: 2,
-        semi: true,
+        semi: false,
         singleQuote: true,
         arrowParens: 'always'
       }
@@ -26,4 +26,4 @@ module.exports = {
   parserOptions: {
     parser: 'babel-eslint'
   }
-};
+}

@@ -4,9 +4,7 @@
     :to="{ name: 'event-show', params: { id: event.id } }"
   >
     <div class="event-card -shadow">
-      <span class="eyebrow"
-        >@{{ event.time }} on {{ event.date.slice('', 10) }}</span
-      >
+      <span class="eyebrow">@{{ event.time }} on {{ event.shortDate }}</span>
       <h4 class="title">{{ event.title }}</h4>
       <BaseIcon name="users">{{ event.attendees.length }} attending</BaseIcon>
     </div>
@@ -20,11 +18,11 @@ export default {
       type: Object,
       required: true,
       default() {
-        return { attendees: [], date: '' };
+        return { attendees: [], date: '' }
       }
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
