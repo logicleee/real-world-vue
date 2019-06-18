@@ -49,41 +49,45 @@
 </template>
 
 <script>
-import Datepicker from 'vuejs-datepicker';
+import Datepicker from 'vuejs-datepicker'
+import NProgress from 'nprogress'
 
 export default {
   components: {
     Datepicker
   },
   data() {
-    const times = [];
+    const times = []
     for (let h = 0; h <= 23; h++) {
-      let hour = '';
-      h.toString().length < 2 ? (hour += '0' + h) : (hour += h);
-      times.push(hour + ':00');
+      let hour = ''
+      h.toString().length < 2 ? (hour += '0' + h) : (hour += h)
+      times.push(hour + ':00')
     }
     return {
       event: this.createFreshEventObject(),
       categories: this.$store.state.categories,
       times
-    };
+    }
   },
   methods: {
     createEvent() {
+      NProgress.start()
       this.$store
         .dispatch('event/createEvent', this.event)
         .then(() => {
           this.$router.push({
             name: 'event-show',
             params: { id: this.event.id }
-          });
-          this.event = this.createFreshEventObject();
+          })
+          this.event = this.createFreshEventObject()
         })
-        .catch(() => {});
+        .catch(() => {
+          NProgress.done()
+        })
     },
     createFreshEventObject() {
-      const user = this.$store.state.user;
-      const id = Math.floor(Math.random() * 10000000);
+      const user = this.$store.state.user
+      const id = Math.floor(Math.random() * 10000000)
 
       return {
         id: id,
@@ -96,10 +100,10 @@ export default {
         date: '',
         time: '',
         attendees: []
-      };
+      }
     }
   }
-};
+}
 </script>
 
 <style>
