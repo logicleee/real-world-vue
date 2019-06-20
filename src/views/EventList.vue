@@ -52,13 +52,6 @@ export default {
   beforeRouteUpdate(routeTo, routeFrom, next) {
     getPageEvents(routeTo, next)
   },
-  created() {
-    this.perPage = 3
-    this.fetchEvents({
-      perPage: this.perPage,
-      page: this.page
-    })
-  },
   computed: {
     hasNextPage() {
       return this.event.eventsTotalCount > this.page * this.event.perPage
