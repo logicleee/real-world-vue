@@ -12,6 +12,7 @@ export const state = {
   eventsTotalCount: 0,
   perPage: 3
 }
+
 export const mutations = {
   ADD_EVENT(state, event) {
     state.events.push(event)
@@ -29,11 +30,13 @@ export const mutations = {
     state.event = event
   }
 }
+
 export const actions = {
   createEvent({ commit, dispatch }, event) {
     return EventService.postEvent(event)
       .then(() => {
         commit('ADD_EVENT', event)
+        commit('SET_EVENT', event)
         const notification = {
           type: 'success',
           message: 'Your event has been created!'
@@ -66,25 +69,23 @@ export const actions = {
         dispatch('notification/add', notification, { root: true })
       })
   },
-  fetchEvent({ commit, getters, dispatch }, id) {
-    const event = getters.getEventById(id)
+
+  // eslint-disable-next-line
+  fetchEvent({ commit, getters, state }, id) {
+    if (id == state.event.id) {
+      return state.event
+    }
+
+    let event = getters.getEventById(id)
 
     if (event) {
       commit('SET_EVENT', event)
       return event
     } else {
-      return EventService.getEvent(id)
-        .then((response) => {
-          commit('SET_EVENT', response.data)
-          return response.data
-        })
-        .catch((error) => {
-          const notification = {
-            type: 'error',
-            message: 'There was a problem fetching event: ' + error.message
-          }
-          dispatch('notification/add', notification, { root: true })
-        })
+      return EventService.getEvent(id).then((response) => {
+        commit('SET_EVENT', response.data)
+        return response.data
+      })
     }
   }
 }
