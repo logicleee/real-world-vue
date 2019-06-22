@@ -10,6 +10,8 @@ import BaseInput from '@/components/BaseInput.vue'
 Vue.component('BaseInput', BaseInput)
 import BaseSelect from '@/components/BaseSelect.vue'
 Vue.component('BaseSelect', BaseSelect)
+import BaseButton from '@/components/BaseButton.vue'
+Vue.component('BaseButton', BaseButton)
 
 Vue.config.productionTip = false
 
