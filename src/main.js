@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store/store'
 import 'nprogress/nprogress.css'
+import Vuelidate from 'vuelidate'
+
+Vue.use(Vuelidate)
 
 import BaseIcon from '@/components/BaseIcon.vue'
 Vue.component('BaseIcon', BaseIcon)
