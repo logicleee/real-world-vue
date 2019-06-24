@@ -4,7 +4,7 @@
     :to="{ name: 'event-show', params: { id: event.id } }"
   >
     <div class="event-card -shadow">
-      <span class="eyebrow">@{{ event.time }} on {{ event.shortDate }}</span>
+      <span class="eyebrow">@{{ event.time }} on {{ event.date | date }}</span>
       <h4 class="title">{{ event.title }}</h4>
       <BaseIcon name="users">{{ event.attendees.length }} attending</BaseIcon>
     </div>
@@ -16,10 +16,7 @@ export default {
   props: {
     event: {
       type: Object,
-      required: true,
-      default() {
-        return { attendees: [], date: '' }
-      }
+      required: true
     }
   }
 }
